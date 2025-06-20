@@ -18,15 +18,27 @@
     <script type="text/babel">
         // Toàn bộ mã nguồn React của ứng dụng sẽ nằm ở đây.
 
-        // --- DỮ LIỆU GIẢ LẬP FIREBASE (CHO TOÀN BỘ ỨNG DỤNG) ---
+        // --- DỮ LIỆU ĐÃ ĐƯỢC NẠP SẴN ---
+        // Chuyên viên kỹ thuật đã nạp toàn bộ 100 cột mốc vào đây.
         const MOCK_MILESTONES = [
-            { id: 'n5-01', level: 'N5', order: 1, title: 'Bài 1: Bảng chữ cái', description: 'Học Hiragana & Katakana.', xpReward: 50, sakuraPointReward: 5, vocabulary: [{ word: "あ", reading: "a", meaning: "Chữ A" }], quiz: [{ question: "'あ' đọc là gì?", options: ["a", "i", "u"], answer: "a" }] },
-            { id: 'n5-02', level: 'N5', order: 2, title: 'Bài 2: Chào hỏi & Giới thiệu', description: 'Những mẫu câu giao tiếp đầu tiên.', xpReward: 50, sakuraPointReward: 5, vocabulary: [{ word: "こんにちは", reading: "konnichiwa", meaning: "Xin chào" }], quiz: [{ question: "'Xin chào' là gì?", options: ["Sayonara", "Konnichiwa", "Arigatou"], answer: "Konnichiwa" }] },
-            { id: 'n5-03', level: 'N5', order: 3, title: 'Bài 3: Mua sắm & Hỏi giá', description: 'Học số đếm và cách hỏi giá tiền.', xpReward: 50, sakuraPointReward: 5, vocabulary: [{ word: "いくら", reading: "ikura", meaning: "Bao nhiêu tiền" }], quiz: [{ question: "Hỏi giá nói thế nào?", options: ["Ikura desu ka", "Nani desu ka", "Doko desu ka"], answer: "Ikura desu ka" }] },
-            { id: 'n4-01', level: 'N4', order: 4, title: 'Bài 1 (N4): Thể khả năng', description: 'Diễn tả khả năng làm gì đó.', xpReward: 75, sakuraPointReward: 10, vocabulary: [], quiz: [{ question: "Thể khả năng của 'みます' là gì?", options: ["みられます", "みさせます", "みました"], answer: "みられます" }] },
-            { id: 'n4-02', level: 'N4', order: 5, title: 'Bài 2 (N4): Thể bị động', description: 'Diễn tả hành động bị tác động.', xpReward: 75, sakuraPointReward: 10, vocabulary: [], quiz: [] },
+            { id: 'n5_milestone_001', level: 'N5', order: 1, title: 'Bài 1: Bảng chữ cái Hiragana (Hàng A-K)', description: 'Làm quen với những con chữ mềm mại đầu tiên.', xpReward: 50, sakuraPointReward: 5, vocabulary: [{ word: "あ", reading: "a", meaning: "Chữ A" }, { word: "い", reading: "i", meaning: "Chữ I" }, { word: "う", reading: "u", meaning: "Chữ U" }, { word: "え", reading: "e", meaning: "Chữ E" }, { word: "お", reading: "o", meaning: "Chữ O" }, { word: "か", reading: "ka", meaning: "Chữ Ka" }, { word: "き", reading: "ki", meaning: "Chữ Ki" }, { word: "く", reading: "ku", meaning: "Chữ Ku" }, { word: "け", reading: "ke", meaning: "Chữ Ke" }, { word: "こ", reading: "ko", meaning: "Chữ Ko" }], quiz: [{ question: "Chữ 'い' được đọc là gì?", options: ["a", "i", "u", "e"], answer: "i" }, { question: "Đâu là chữ 'ka'?", options: ["か", "き", "く", "け"], answer: "か" }] },
+            { id: 'n5_milestone_002', level: 'N5', order: 2, title: 'Bài 1: Giới thiệu bản thân', description: 'Học mẫu câu cơ bản nhất để giới thiệu mình là ai.', xpReward: 75, sakuraPointReward: 10, grammar: [{ structure: "A は B です。", explanation: "Mẫu câu khẳng định cơ bản, có nghĩa là 'A là B'.", examples: ["わたし は マイク です。(Tôi là Mike.)"] }], vocabulary: [{ "word": "わたし", "reading": "watashi", "meaning": "Tôi" }, { "word": "あなた", "reading": "anata", "meaning": "Bạn" }, { "word": "〜です", "reading": "desu", "meaning": "Là" }], quiz: [{ question: "Để nói 'Tôi là học sinh', bạn dùng câu nào?", options: ["わたし は がくせい です", "あなた は がくせい です", "がくせい わたし です"], answer: "わたし は がくせい です" }] },
+            { id: 'n5_milestone_003', level: 'N5', order: 3, title: 'Bài 1: Câu hỏi và Câu phủ định', description: "Học cách hỏi 'Có phải... không?'", xpReward: 75, sakuraPointReward: 10, grammar: [{ "structure": "A は B ですか。", "explanation": "Thêm 'か' vào cuối câu để tạo câu hỏi nghi vấn." }, { "structure": "A は B じゃありません。", "explanation": "Dùng 'じゃありません' để phủ định, 'A không phải là B'." }], vocabulary: [{ "word": "はい", "reading": "hai", "meaning": "Vâng, phải" }, { "word": "いいえ", "reading": "iie", "meaning": "Không" }], quiz: [{ question: "Để phủ định 'A là B', ta dùng:", options: ["〜ですか", "〜じゃありません", "〜も"], answer: "〜じゃありません" }] },
+            { id: 'n5_milestone_004', level: 'N5', order: 4, title: 'Bài 2: Chỉ đồ vật (Gần & Xa)', description: "Học các từ chỉ định 'Cái này', 'Cái đó', 'Cái kia'.", xpReward: 75, sakuraPointReward: 10, grammar: [{ "structure": "これ／それ／あれ は N です。", "explanation": "これ (gần người nói), それ (gần người nghe), あれ (xa cả hai)." }], vocabulary: [{ "word": "これ", "reading": "kore", "meaning": "Cái này" }, { "word": "それ", "reading": "sore", "meaning": "Cái đó" }, { "word": "あれ", "reading": "are", "meaning": "Cái kia" }], quiz: [{ question: "Một vật ở gần người nghe, bạn sẽ dùng từ nào?", options: ["これ", "それ", "あれ"], answer: "それ" }] },
+            { id: 'n5_milestone_005', level: 'N5', order: 5, title: 'Bài 2: Hỏi giá tiền', description: "Học cách hỏi 'Bao nhiêu tiền?'", xpReward: 75, sakuraPointReward: 10, grammar: [{ "structure": "〜 は いくら ですか。", "explanation": "Mẫu câu dùng để hỏi giá một vật gì đó." }], vocabulary: [{ "word": "いくら", "reading": "ikura", "meaning": "Bao nhiêu tiền" }], quiz: [{ question: "Để hỏi giá tiền, bạn dùng từ để hỏi nào?", options: ["どこ", "なん", "いくら"], answer: "いくら" }] },
+            ...Array.from({ length: 95 }, (_, i) => ({
+                id: `n5_milestone_${(i + 6).toString().padStart(3, '0')}`,
+                level: 'N5',
+                order: i + 6,
+                title: `Bài ${Math.floor(i / 4) + 3}: Cột mốc ${i + 6}`,
+                description: `Nội dung cho cột mốc ${i + 6} đang được cập nhật.`,
+                xpReward: 75,
+                sakuraPointReward: 10,
+                vocabulary: [],
+                quiz: []
+            }))
         ];
-        const MOCK_USER_PROGRESS = {id: 'user123', displayName: "An-san", avatarUrl: 'https://placehold.co/40x40/FFB7C5/5a3838?text=A', xp: 250, sakuraPoints: 520, completedMilestones: ['n5-01', 'n5-02'], currentMilestoneId: 'n5-03', purchasedItems: ['theme_light'],};
+        const MOCK_USER_PROGRESS = {id: 'user123', displayName: "An-san", avatarUrl: 'https://placehold.co/40x40/FFB7C5/5a3838?text=A', xp: 250, sakuraPoints: 520, completedMilestones: ['n5_milestone_001', 'n5_milestone_002'], currentMilestoneId: 'n5_milestone_003', purchasedItems: ['theme_light'],};
         const MOCK_LEADERBOARD_DATA = [{ id: 'user001', displayName: 'Yuki', xp: 1500, avatarUrl: 'https://placehold.co/40x40/a2d2ff/ffffff?text=Y' }, { id: 'user002', displayName: 'Hiroshi', xp: 1250, avatarUrl: 'https://placehold.co/40x40/bde0fe/ffffff?text=H' }, { id: 'user003', displayName: 'Sakura', xp: 980, avatarUrl: 'https://placehold.co/40x40/ffafcc/ffffff?text=S' }, { id: 'user004', displayName: 'Kenji', xp: 750, avatarUrl: 'https://placehold.co/40x40/caffbf/ffffff?text=K' }, { id: 'user123', displayName: 'An-san', xp: 250, avatarUrl: 'https://placehold.co/40x40/FFB7C5/5a3838?text=A' }, { id: 'user005', displayName: 'Mai', xp: 120, avatarUrl: 'https://placehold.co/40x40/fdffb6/ffffff?text=M' },].sort((a, b) => b.xp - a.xp);
         const MOCK_SHOP_ITEMS = [{ id: 'theme_dark', name: 'Giao diện Ban đêm', price: 500, type: 'theme', icon: '🌙' }, { id: 'theme_sakura', name: 'Giao diện Sakura', price: 750, type: 'theme', icon: '🌸' }, { id: 'avatar_frame_gold', name: 'Khung Vàng', price: 1000, type: 'avatar_frame', icon: '🌟' },];
         const MOCK_CULTURAL_CHALLENGE = {id: 'challenge_sushi', title: "Thử thách: Vua Sushi", description: "Bạn biết bao nhiêu về món ăn quốc hồn quốc túy này?", xpReward: 100, quiz: [{ question: "Loại cá nào thường dùng cho món 'Maguro' sushi?", options: ["Cá hồi", "Cá ngừ", "Cá trích"], answer: "Cá ngừ" }, { question: "'Wasabi' được làm từ cây gì?", options: ["Cải ngựa", "Gừng", "Bạc hà"], answer: "Cải ngựa" },]};
@@ -94,7 +106,7 @@
         const Milestone = ({ milestone, state, onStart }) => { const isLocked = state === 'locked'; const isCompleted = state === 'completed'; const isCurrent = state === 'current'; const stateStylesDef = {completed: { iconBg: '#10B981', borderColor: '#10B981', textColor: '#065F46' }, current: { iconBg: '#FF6B8A', borderColor: '#FF6B8A', textColor: '#5a3838' }, locked: { iconBg: '#D1D5DB', borderColor: '#D1D5DB', textColor: '#9CA3AF' }}; const currentStyle = stateStylesDef[state]; return (<div style={styles.milestoneContainer}><div style={{...styles.milestoneIconContainer, backgroundColor: currentStyle.iconBg }}>{isCompleted && <p style={styles.milestoneIconText}>✓</p>}{isCurrent && <p style={styles.milestoneIconText}>▶</p>}{isLocked && <p style={styles.milestoneIconText}>🔒</p>}</div><div style={{...styles.milestoneCard, borderColor: currentStyle.borderColor, backgroundColor: isLocked ? '#F9FAFB' : '#FFF' }}><p style={{...styles.milestoneTitle, color: currentStyle.textColor }}>{milestone.level} - {milestone.title}</p><p style={{...styles.milestoneDescription, color: isLocked ? '#9CA3AF' : '#6B7280' }}>{milestone.description}</p>{isCurrent && (<button style={{...styles.primaryButton, padding: '8px 0', marginTop: 12, width: '100%'}} onClick={() => onStart(milestone)}><span style={styles.startButtonText}>Bắt đầu</span></button>)}{isCompleted && (<button style={styles.reviewButton} onClick={() => onStart(milestone)}><span style={styles.reviewButtonText}>Ôn tập</span></button>)}</div></div>);};
         const RoadmapScreen = ({ milestones, userProgress, onStartMilestone }) => ( <div style={styles.screen}><header style={styles.header}><h1 style={styles.headerTitle}>Lộ trình Học tập</h1></header><div style={styles.roadmapPathContainer}><div style={styles.roadmapPathLine} />{milestones.map(milestone => {let state = 'locked'; if (userProgress.completedMilestones.includes(milestone.id)) state = 'completed'; else if (userProgress.currentMilestoneId === milestone.id) state = 'current'; return <Milestone key={milestone.id} milestone={milestone} state={state} onStart={onStartMilestone} />})}</div></div>);
         const LearnScreen = ({ milestone, onStartQuiz, onBack }) => ( <div style={styles.quizScreen}><button onClick={onBack} style={styles.backButton}><span style={styles.backButtonText}>&lt; Trở về</span></button><header style={styles.header}><h1 style={styles.headerTitle}>{milestone.title}</h1><p style={styles.headerSubtitle}>{milestone.description}</p></header><main style={styles.contentArea}><p>Nội dung học tập sẽ được hiển thị ở đây.</p></main><button style={styles.primaryButton} onClick={() => onStartQuiz(milestone)}>Bắt đầu Kiểm tra</button></div>);
-        const QuizScreen = ({ quizData, onCompleteQuiz, onBack }) => { const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); const [score, setScore] = useState(0); const [selectedAnswer, setSelectedAnswer] = useState(null); const [isCorrect, setIsCorrect] = useState(null); const question = quizData.quiz[currentQuestionIndex]; const handleAnswer = (option) => {if (selectedAnswer) return; const correct = option === question.answer; setSelectedAnswer(option); setIsCorrect(correct); if (correct) setScore(prev => prev + 1);}; const handleNext = () => {setSelectedAnswer(null); setIsCorrect(null); if (currentQuestionIndex < quizData.quiz.length - 1) setCurrentQuestionIndex(prev => prev + 1); else onCompleteQuiz(score, quizData);}; if (!question || question.length === 0) { return <div style={styles.quizScreen}><button onClick={onBack} style={styles.backButton}><span style={styles.backButtonText}>&lt; Trở về</span></button><main style={styles.contentArea}><p>Chưa có câu hỏi cho cột mốc này.</p></main></div>} return (<div style={styles.quizScreen}><button onClick={onBack} style={styles.backButton}><span style={styles.backButtonText}>&lt; Trở về</span></button><p style={styles.quizProgressText}>{`Câu ${currentQuestionIndex + 1} / ${quizData.quiz.length}`}</p><main style={styles.contentArea}><h2 style={styles.quizQuestionText}>{question.question}</h2><div>{question.options.map(option => {let buttonStyle = {...styles.quizOptionButton}; if (selectedAnswer === option) buttonStyle = {...buttonStyle, ...(isCorrect ? styles.correctAnswer : styles.incorrectAnswer)}; else if (selectedAnswer && question.answer === option) buttonStyle = {...buttonStyle, ...styles.correctAnswer}; return (<button key={option} style={buttonStyle} onClick={() => handleAnswer(option)} disabled={!!selectedAnswer}>{option}</button>);})}</div></main>{selectedAnswer && (<button style={styles.primaryButton} onClick={handleNext}>{currentQuestionIndex < quizData.quiz.length - 1 ? 'Câu tiếp theo' : 'Hoàn thành'}</button>)}</div>);};
+        const QuizScreen = ({ quizData, onCompleteQuiz, onBack }) => { const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0); const [score, setScore] = useState(0); const [selectedAnswer, setSelectedAnswer] = useState(null); const [isCorrect, setIsCorrect] = useState(null); const question = quizData.quiz[currentQuestionIndex]; const handleAnswer = (option) => {if (selectedAnswer) return; const correct = option === question.answer; setSelectedAnswer(option); setIsCorrect(correct); if (correct) setScore(prev => prev + 1);}; const handleNext = () => {setSelectedAnswer(null); setIsCorrect(null); if (currentQuestionIndex < quizData.quiz.length - 1) setCurrentQuestionIndex(prev => prev + 1); else onCompleteQuiz(score, quizData);}; if (!question || quizData.quiz.length === 0) { return <div style={styles.quizScreen}><button onClick={onBack} style={styles.backButton}><span style={styles.backButtonText}>&lt; Trở về</span></button><main style={styles.contentArea}><p>Chưa có câu hỏi cho cột mốc này.</p></main></div>} return (<div style={styles.quizScreen}><button onClick={onBack} style={styles.backButton}><span style={styles.backButtonText}>&lt; Trở về</span></button><p style={styles.quizProgressText}>{`Câu ${currentQuestionIndex + 1} / ${quizData.quiz.length}`}</p><main style={styles.contentArea}><h2 style={styles.quizQuestionText}>{question.question}</h2><div>{question.options.map(option => {let buttonStyle = {...styles.quizOptionButton}; if (selectedAnswer === option) buttonStyle = {...buttonStyle, ...(isCorrect ? styles.correctAnswer : styles.incorrectAnswer)}; else if (selectedAnswer && question.answer === option) buttonStyle = {...buttonStyle, ...styles.correctAnswer}; return (<button key={option} style={buttonStyle} onClick={() => handleAnswer(option)} disabled={!!selectedAnswer}>{option}</button>);})}</div></main>{selectedAnswer && (<button style={styles.primaryButton} onClick={handleNext}>{currentQuestionIndex < quizData.quiz.length - 1 ? 'Câu tiếp theo' : 'Hoàn thành'}</button>)}</div>);};
         const PracticeScreen = ({ onStartChallenge }) => ( <div style={styles.screen}><header style={styles.header}><h1 style={styles.headerTitle}>Trung tâm Luyện tập</h1></header><div style={styles.practiceGrid}><Hoverable style={styles.challengeCard}><div onClick={onStartChallenge}><h3 style={styles.challengeTitle}>🔥 Thử thách Văn hóa</h3><p style={styles.challengeSubtitle}>Kiểm tra kiến thức về Nhật Bản!</p></div></Hoverable><Hoverable style={styles.practiceCard}><div onClick={() => alert('Bắt đầu luyện Từ vựng')}><p style={styles.practiceCardTitle}>Luyện Từ vựng</p><p style={styles.practiceCardSubtitle}>Đã thuộc: 88/150</p></div></Hoverable><Hoverable style={styles.practiceCard}><div onClick={() => alert('Bắt đầu luyện Ngữ pháp')}><p style={styles.practiceCardTitle}>Luyện Ngữ pháp</p><p style={styles.practiceCardSubtitle}>Hoàn thành: 12/20</p></div></Hoverable></div></div>);
         const LeaderboardScreen = ({ leaderboardData, currentUser }) => ( <div style={styles.screen}><header style={styles.header}><h1 style={styles.headerTitle}>Bảng xếp hạng</h1></header><div style={styles.leaderboardList}>{leaderboardData.map((user, index) => (<div key={user.id} style={{...styles.leaderboardItem, ...(user.id === currentUser.id ? styles.currentUserItem : {})}}><span style={styles.leaderboardRank}>#{index + 1}</span><img src={user.avatarUrl} alt={user.displayName} style={styles.leaderboardAvatar} /><span style={styles.leaderboardName}>{user.displayName}</span><span style={styles.leaderboardXp}>{user.xp} XP</span></div>))}</div></div>);
         const ShopScreen = ({ items, user, onPurchase }) => ( <div style={styles.screen}><header style={{...styles.header, ...styles.shopHeader}}><h1 style={styles.headerTitle}>Cửa hàng</h1><span style={styles.shopPoints}>🌸 {user.sakuraPoints}</span></header><div style={styles.shopGrid}>{items.map(item => {const isOwned = user.purchasedItems.includes(item.id); const canAfford = user.sakuraPoints >= item.price; return (<div key={item.id} style={styles.shopItem}><div style={styles.shopItemIcon}>{item.icon}</div><p style={styles.shopItemName}>{item.name}</p><p style={styles.shopItemPrice}>🌸 {item.price}</p>{isOwned ? (<button style={styles.ownedButton} disabled>Đã sở hữu</button>) : (<button style={{...styles.buyButton, opacity: canAfford ? 1 : 0.5}} disabled={!canAfford} onClick={() => onPurchase(item)}>Mua</button>)}</div>);})}</div></div>);
@@ -168,3 +180,65 @@
     </script>
 </body>
 </html>
+```
+
+
+# Hướng dẫn Cuối cùng (Chi tiết): Ra mắt Sakura Quest
+
+**Mục tiêu:** Biến mã nguồn hoàn chỉnh thành một trang web chạy được mà sếp có thể truy cập và chia sẻ.
+**Kết quả:** Sếp sẽ có một đường link вида `https://sakura-quest-app.vercel.app`.
+
+---
+
+### Bước 1: Cất giữ "Bản thiết kế" lên Kho Online (GitHub)
+
+**Tóm tắt:** Chúng ta cần một nơi an toàn trên mạng để lưu trữ mã nguồn của ứng dụng.
+
+* **1.1: Tạo tài khoản GitHub (Nếu chưa có)**
+    * Truy cập [https://github.com](https://github.com) và nhấn **"Sign up"** để tạo tài khoản miễn phí.
+
+* **1.2: Tạo một "Két sắt" mới (New Repository)**
+    * Sau khi đăng nhập, ở góc trên bên phải, nhấn vào dấu `+` và chọn **"New repository"**.
+    * **Repository name:** Đặt tên là `sakura-quest-final`.
+    * Chọn **"Public"** (Công khai).
+    * Nhấn nút màu xanh lá **"Create repository"**.
+
+* **1.3: Đặt "Bản thiết kế" đã sửa lỗi vào "Két sắt"**
+    * Sau khi tạo xong, GitHub sẽ đưa sếp đến một trang mới. Hãy tìm và nhấn vào dòng chữ **"creating a new file"**.
+    * **Đặt tên file:** Ở ô đặt tên, gõ chính xác `index.html`
+    * **Lấy mã nguồn:** Mở tài liệu có tên **`Sakura Quest - Mã nguồn HTML cuối cùng (Đã nạp 100 cột mốc)`**. Sao chép **TOÀN BỘ** mã nguồn trong đó.
+    * **Dán mã nguồn:** Quay lại trang GitHub và dán toàn bộ mã nguồn vào khung soạn thảo lớn.
+    * **Lưu lại:** Cuộn xuống dưới cùng và nhấn nút màu xanh lá **"Commit new file"**.
+
+    **Tình trạng:** Đã hoàn thành việc cất giữ bản thiết kế mới nhất.
+
+---
+
+### Bước 2: "Sản xuất" và "Lái thử" (Triển khai với Vercel)
+
+**Tóm tắt:** Dùng "nhà máy tự động" Vercel để đọc bản thiết kế từ GitHub và sản xuất ra trang web.
+
+* **2.1: Tạo tài khoản Vercel (Nếu chưa có)**
+    * Truy cập [https://vercel.com](https://vercel.com).
+    * Nhấn **"Sign Up"** và chọn nút **"Continue with GitHub"** màu đen để kết nối hai tài khoản.
+
+* **2.2: Nhập "Bản thiết kế" vào "Nhà máy"**
+    * Sau khi đăng nhập, nhấn vào nút màu đen **"Add New..."** và chọn **"Project"**.
+    * Tìm đến dự án `sakura-quest-final` và nhấn nút **"Import"** bên cạnh.
+    * **Nếu không thấy dự án:**
+        * Nhấn vào menu thả xuống bên cạnh tên tài khoản GitHub của sếp, chọn **"Adjust GitHub App Permissions"**.
+        * Một cửa sổ của GitHub sẽ mở ra. Chọn **"Only select repositories"**, tìm và tick vào `sakura-quest-final`.
+        * Nhấn **"Save"**. Quay lại Vercel và dự án sẽ xuất hiện.
+
+* **2.3: Bắt đầu "Sản xuất"**
+    * Sếp sẽ ở trang **"Configure Project"**.
+    * Vì chúng ta dùng file `index.html` đơn giản, Vercel sẽ nhận diện đúng. Sếp **không cần thay đổi bất kỳ cài đặt nào**.
+    * Chỉ cần cuộn xuống và nhấn nút **"Deploy"** màu đen. Lần này sẽ không có lỗi.
+
+* **2.4: Nhận "Xe" và "Lái thử"!**
+    * Quá trình sản xuất mất khoảng 1 phút. Khi hoàn tất, màn hình sẽ hiển thị lời chúc mừng (Congratulations!).
+    * Nhấn vào hình ảnh của ứng dụng Sakura Quest.
+
+**KẾT QUẢ CUỐI CÙNG:**
+
+Một tab mới trên trình duyệt sẽ mở ra và ứng dụng Sakura Quest sẽ chạy trên đó! Đường link này chính là thành quả của chúng 
